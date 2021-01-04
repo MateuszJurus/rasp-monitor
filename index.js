@@ -1,17 +1,11 @@
-const fs = require('fs');
+const { parse } = require('path');
 const path = require('path');
+const parseTemperature = require('./src/helpers/parseTemperature');
 
 const os = process.platform;
 
-const scriptsPath = path.join(__dirname, 'scripts', );
+const scriptsPath = path.join(__dirname, 'scripts');
 const logsPath = path.join(__dirname, 'logs');
-const tempLogs = path.join(scriptsPath, 'tempcheck.sh');
+const tempLogs = path.join(logsPath, 'temperature.log');
 
-console.log(tempDir)
-
-fs.readFile('./file', 'utf8', (err,data) => {
-    if(err) {
-        return console.log(err);
-    }
-    console.log(data)
-})
+parseTemperature(tempLogs);
