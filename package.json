@@ -18,5 +18,8 @@
   "homepage": "https://github.com/MateuszJurus/rasp-monitor#readme",
   "devDependencies": {
     "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
