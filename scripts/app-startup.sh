@@ -2,7 +2,7 @@
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo 'Starting up...'
-    /bin/bash ./create-crons.ssh
+    /bin/bash ./scripts/create-crons.ssh
 else   
     echo -e "\033[0;31m Error: cannot be started on ${OSTYPE}"
 fi
