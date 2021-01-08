@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "sh ./scripts/app-startup.sh"
+    "start": "bash ./scripts/app-startup.sh"
   },
   "repository": {
     "type": "git",
