@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#temp cron
+#cron file into temp cron
 crontab -l > temp_cron
 if [ $? -eq 0 ]; then
     #install new cron file
@@ -9,6 +9,7 @@ if [ $? -eq 0 ]; then
     rm temp_cron
     echo -e "\033[0;32m Cron jobs added successfuly"
 else
+    #return error message if it fails
     rm temp_cron
     echo -e "\033[0;31m Error: cron jobs could not be added"
 fi
