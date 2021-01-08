@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo 'Adding cron jobs...'
 #cron file into temp cron
 crontab -l > temp_cron
 if [ $? -eq 0 ]; then
