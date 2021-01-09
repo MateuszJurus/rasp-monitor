@@ -6,6 +6,8 @@ echo 'Removing cron jobs...'
 crontab -l > temp_cron
 
 #remove all the lines between custom tags and remove temp file
-sed '/#MJMONITOR START/,/#MJMONITOR END/d' temp_cron
+sed '/#MJMONITOR START/,/#MJMONITOR END/d' temp_cron > tempfile && mv tempfile temp_cron 
 crontab temp_cron
 rm temp_cron
+
+echo 'Custom cron jobs removed'
