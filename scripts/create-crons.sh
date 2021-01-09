@@ -19,7 +19,7 @@ else
     echo "#MJMONITOR END" >> temp_cron
     crontab temp_cron
     rm temp_cron
-    echo -e "\033[0;32m Cron jobs added successfuly"
+    echo -e "\033[0;32mCron jobs added successfuly"
 fi
 
 
