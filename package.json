@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "bash ./scripts/app-startup.sh"
+    "start": "bash ./scripts/app-startup.sh",
+    "start-win": "nodemon -w --exec \"babel-node \""
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/MateuszJurus/rasp-monitor#readme",
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-cli": "^6.26.0",
     "nodemon": "^2.0.6"
   },
   "dependencies": {
