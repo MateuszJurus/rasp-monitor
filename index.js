@@ -10,6 +10,11 @@ const scriptsPath = path.join(__dirname, 'scripts');
 const logsPath = path.join(__dirname, 'logs');
 const temperatureLogsPath = path.join(logsPath, 'temperature.log');
 
+//Serve homepage
+app.get('/', function(req, res){
+    res.sendFile('index.html', { root: __dirname + "/src/html/" } );
+});
+
 app.get('/url', (req,res,next) => {
     // Change temperature file into readable object
     parseTemperature(temperatureLogsPath).then(val => {
