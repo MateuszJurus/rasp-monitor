@@ -1,11 +1,19 @@
 .body {
     padding: 10px;
-    background-color: #0e0c0c;
+    background-color:#130606;
     color: rgb(221, 221, 221);
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .heat-chart-wrapper {
+    position: relative;
     border: solid 1px lightgrey;
     height: 400px;
+}
+
+.chartPoint {
+    padding: 5px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
 }

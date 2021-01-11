@@ -1,9 +1,11 @@
-const getLogData = logName => {
+const getLogData = async logName => {
     const url = "http://localhost:8080/url";
-
-    fetch(url)
+    let res;
+    await fetch(url)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {res = data})
+
+    return res;
 }
 
-module.exports = getLogData;
+export default getLogData;
