@@ -15,24 +15,25 @@ class Chart {
     }
     //Parse temperature format into readable value [expected ex. 10,5'] 
     tempIntoValue(temp) {
-        console.log(temp.slice(0,-1))
         return temp.slice(0,-1);
     }
 
     //Create a point which will be displayed on the chart
-    createChartPoint(values = [this.data[0][0],this.data[0][1]]) {
+    createChartPoint(values) {
+        console.log(values)
         const point = document.createElement('span');
-        const y = this.tempIntoValue(this.data[0][1]);
+        const y = this.tempIntoValue(values[1]);
         point.classList.add('chartPoint');
         point.style.left = "1px";
         point.style.bottom = y + "px";
-        console.log(values)
-        this.elem.appendChild(point)
+        this.elem.appendChild(point);
     }
 }
 
-getLogData().then(val => {
-    heatChart = new Chart(val,chart);
-    heatChart.createChartPoint();
+getLogData().then(data => {
+    heatChart = new Chart(data,chart);
+    for(let i = 0; i < Object.keys(data).length; i++) {
+        heatChart.createChartPoint(data[i]);
+    }
 })
 
