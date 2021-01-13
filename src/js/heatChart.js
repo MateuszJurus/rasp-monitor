@@ -4,10 +4,9 @@ const chart = document.querySelector('.heat-chart-wrapper');
 let heatChart;
 
 class Chart {
-    constructor(data,elem,dimensions=[400,400]) {
+    constructor(data,elem) {
         this.data = data;
         this.elem = elem;
-        this.dimensions = dimensions;
     }
 
     //Parse temperature format into readable value [expected ex. 10,5'] 
@@ -19,10 +18,12 @@ class Chart {
     createChartPoint(values, n, i) {
         const point = document.createElement('span');
         const y = this.tempIntoValue(values[1]);
+        point.setAttribute('data-before', y);
         point.classList.add('chartPoint');
         //calculate how far apart points should be
-        let x = (this.elem.offsetWidth / (n-1))-1;
+        let x = (this.elem.offsetWidth / (n-1))-2;
         point.style.left = x*i + "px";
+        //Assuming temperature ranges to be ~46' this will make temp differences more readable
         point.style.bottom = y*100-4600 + "px";
         this.elem.appendChild(point);
     }
