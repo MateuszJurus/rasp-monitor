@@ -1,5 +1,5 @@
 const path = require('path');
-const parseTemperature = require('./src/helpers/parseTemperature');
+const parseTemperature = require('./src/js/helpers/parseTemperature');
 
 const express = require("express");
 const app = express();
@@ -9,6 +9,9 @@ const os = process.platform;
 const scriptsPath = path.join(__dirname, 'scripts');
 const logsPath = path.join(__dirname, 'logs');
 const temperatureLogsPath = path.join(logsPath, 'temperature.log');
+
+//get files from src catalog
+app.use(express.static('src'))
 
 //Serve homepage
 app.get('/', function(req, res){
