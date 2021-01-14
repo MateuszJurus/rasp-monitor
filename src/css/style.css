@@ -35,9 +35,18 @@
     background-color: black;
     transition: .2s;
     visibility: hidden;
+    opacity: 0;
 }
 
 .chartPoint:hover::after {
     top: -35px;
     visibility: visible;
+    opacity: 1;
+}
+
+.chartLine {
+    position: absolute;
+    height: 1px;
+    background-color: white;
+    transform-origin: bottom left;
 }
