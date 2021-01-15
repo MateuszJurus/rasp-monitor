@@ -49,4 +49,5 @@
     height: 1px;
     background-color: white;
     transform-origin: bottom left;
+    pointer-events: none;
 }
