@@ -30,19 +30,23 @@ class Chart {
 
     connectTheDots() {
         const dots = document.querySelectorAll('.chartPoint');
-        //For each dot, get its coordinates, create and append line connecting with next dot
         for(let i = 0; i < dots.length; i++) {
             if(dots[i+1]) {
+                //Get coordinates of the dot and its successor
                 const dotX = dots[i].getBoundingClientRect().left;
                 const dotY = dots[i].getBoundingClientRect().bottom;
                 const dotXX = dots[i+1].getBoundingClientRect().left;
                 const dotYY = dots[i+1].getBoundingClientRect().bottom;
-                console.log(dotYY)
+                //create line to connect them
                 const line = document.createElement('span');
                 line.classList.add('chartLine');
                 line.style.left = 0+dots[i].offsetWidth/2 + "px";
                 line.style.width = Math.sqrt((dotXX-dotX)*(dotXX-dotX)+(dotYY-dotY)*(dotYY-dotY)) + "px";
-                //line.style.bottom = 0 + "px";
+                //Get the angle between the dots
+                const dY = dotYY - dotY;
+                const dX = dotXX - dotX;
+                const angle = Math.atan2(dY,dX)*180/Math.PI;
+                line.style.transform = "rotate(" + angle + "deg)";
                 dots[i].appendChild(line);
             }
         }
