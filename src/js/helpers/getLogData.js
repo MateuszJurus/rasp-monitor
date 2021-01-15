@@ -1,3 +1,4 @@
+//Get content of a log file and serve at /url
 const getLogData = async logName => {
     const url = "http://localhost:8080/url";
     let res;

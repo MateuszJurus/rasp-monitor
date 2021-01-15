@@ -21,11 +21,35 @@ class Chart {
         point.setAttribute('data-before', y);
         point.classList.add('chartPoint');
         //calculate how far apart points should be
-        let x = (this.elem.offsetWidth / (n-1))-2;
-        point.style.left = x*i + "px";
+        let x = (100/n)+0.5;
+        point.style.left = x*i + "%";
         //Assuming temperature ranges to be ~46' this will make temp differences more readable
         point.style.bottom = y*100-4600 + "px";
         this.elem.appendChild(point);
+    }
+
+    connectTheDots() {
+        const dots = document.querySelectorAll('.chartPoint');
+        for(let i = 0; i < dots.length; i++) {
+            if(dots[i+1]) {
+                //Get coordinates of the dot and its successor
+                const dotX = dots[i].getBoundingClientRect().left;
+                const dotY = dots[i].getBoundingClientRect().bottom;
+                const dotXX = dots[i+1].getBoundingClientRect().left;
+                const dotYY = dots[i+1].getBoundingClientRect().bottom;
+                //create line to connect them
+                const line = document.createElement('span');
+                line.classList.add('chartLine');
+                line.style.left = 0+dots[i].offsetWidth/2 + "px";
+                line.style.width = Math.sqrt((dotXX-dotX)*(dotXX-dotX)+(dotYY-dotY)*(dotYY-dotY)) + "px";
+                //Get the angle between the dots
+                const dY = dotYY - dotY;
+                const dX = dotXX - dotX;
+                const angle = Math.atan2(dY,dX)*180/Math.PI;
+                line.style.transform = "rotate(" + angle + "deg)";
+                dots[i].appendChild(line);
+            }
+        }
     }
 }
 
@@ -34,5 +58,6 @@ getLogData().then(data => {
     for(let i = 0; i < Object.keys(data).length; i++) {
         heatChart.createChartPoint(data[i],Object.keys(data).length, i);
     }
+    heatChart.connectTheDots();
 })
 
