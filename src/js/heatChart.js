@@ -1,7 +1,12 @@
 import getLogData from "./helpers/getLogData.js";
 
+//Chart config
 const config = {
     refreshRate: 5000,
+    dots: {
+        width: 8,
+        height: 8,
+    }
 }
 
 const chart = document.querySelector('.heat-chart-wrapper');
@@ -36,15 +41,15 @@ class Chart {
         const dots = document.querySelectorAll('.chartPoint');
         for(let i = 0; i < dots.length; i++) {
             if(dots[i+1]) {
-                //Get coordinates of the dot and its successor
+                //Get coordinates of current dot and the next
                 const dotX = dots[i].getBoundingClientRect().left;
                 const dotY = dots[i].getBoundingClientRect().bottom;
-                const dotXX = dots[i+1].getBoundingClientRect().left;
+                const dotXX = dots[i+1].getBoundingClientRect().left-8;
                 const dotYY = dots[i+1].getBoundingClientRect().bottom;
                 //create line to connect them
                 const line = document.createElement('span');
                 line.classList.add('chartLine');
-                line.style.left = 0+dots[i].offsetWidth/2 + "px";
+                line.style.left = config.dots.width+dots[i].offsetWidth/2 + "px";
                 line.style.width = Math.sqrt((dotXX-dotX)*(dotXX-dotX)+(dotYY-dotY)*(dotYY-dotY)) + "px";
                 //Get the angle between the dots
                 const dY = dotYY - dotY;
@@ -72,4 +77,5 @@ const renderChart = () => {
     })
 }
 
+renderChart();
 setInterval(renderChart, config.refreshRate);
