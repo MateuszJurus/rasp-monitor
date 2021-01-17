@@ -18,15 +18,10 @@ class Chart {
         this.elem = elem;
     }
 
-    //Parse temperature format into readable value [expected ex. 10,5'] 
-    tempIntoValue(temp) {
-        return temp.slice(0,-1);
-    }
-
     //Create a point which will be displayed on the chart
     createChartPoint(values, n, i) {
         const point = document.createElement('span');
-        const y = this.tempIntoValue(values[1]);
+        const y = values[1];
         point.setAttribute('data-before', y);
         point.classList.add('chartPoint');
         //calculate how far apart points should be
