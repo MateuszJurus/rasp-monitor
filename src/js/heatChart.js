@@ -1,5 +1,9 @@
 import getLogData from "./helpers/getLogData.js";
 
+const config = {
+    refreshRate: 5000,
+}
+
 const chart = document.querySelector('.heat-chart-wrapper');
 let heatChart;
 
@@ -51,13 +55,21 @@ class Chart {
             }
         }
     }
+
+    clearChart() {
+        this.elem.innerHTML = '';
+    }
 }
 
-getLogData().then(data => {
-    heatChart = new Chart(data,chart);
-    for(let i = 0; i < Object.keys(data).length; i++) {
-        heatChart.createChartPoint(data[i],Object.keys(data).length, i);
-    }
-    heatChart.connectTheDots();
-})
+const renderChart = () => {
+    getLogData().then(data => {
+        heatChart = new Chart(data,chart);
+        heatChart.clearChart();
+        for(let i = 0; i < Object.keys(data).length; i++) {
+            heatChart.createChartPoint(data[i],Object.keys(data).length, i);
+        }
+        heatChart.connectTheDots();
+    })
+}
 
+setInterval(renderChart, config.refreshRate);
