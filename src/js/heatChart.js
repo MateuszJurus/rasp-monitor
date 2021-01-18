@@ -25,10 +25,10 @@ class Chart {
         point.setAttribute('data-before', y);
         point.classList.add('chartPoint');
         //calculate how far apart points should be
-        let x = (100/n);
+        let x = 100/n;
         point.style.left = x*i + "%";
         //Assuming temperature ranges to be ~46' this will make temp differences more readable
-        point.style.bottom = y*100-4600 + "px";
+        point.style.bottom = y*10-300 + "px";
         this.elem.appendChild(point);
     }
 
