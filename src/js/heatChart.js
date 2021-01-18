@@ -25,10 +25,10 @@ class Chart {
         point.setAttribute('data-before', y);
         point.classList.add('chartPoint');
         //calculate how far apart points should be
-        let x = (100/n)+0.5;
+        let x = 100/n;
         point.style.left = x*i + "%";
         //Assuming temperature ranges to be ~46' this will make temp differences more readable
-        point.style.bottom = y*100-4600 + "px";
+        point.style.bottom = y*10-300 + "px";
         this.elem.appendChild(point);
     }
 
@@ -39,12 +39,12 @@ class Chart {
                 //Get coordinates of current dot and the next
                 const dotX = dots[i].getBoundingClientRect().left;
                 const dotY = dots[i].getBoundingClientRect().bottom;
-                const dotXX = dots[i+1].getBoundingClientRect().left-8;
+                const dotXX = dots[i+1].getBoundingClientRect().left;
                 const dotYY = dots[i+1].getBoundingClientRect().bottom;
                 //create line to connect them
                 const line = document.createElement('span');
                 line.classList.add('chartLine');
-                line.style.left = config.dots.width+dots[i].offsetWidth/2 + "px";
+                line.style.left = dots[i].offsetWidth/2 + "px";
                 line.style.width = Math.sqrt((dotXX-dotX)*(dotXX-dotX)+(dotYY-dotY)*(dotYY-dotY)) + "px";
                 //Get the angle between the dots
                 const dY = dotYY - dotY;
